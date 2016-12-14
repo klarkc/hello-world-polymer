@@ -1,0 +1,45 @@
+<!--
+Import Polymer, this library is only used for
+building custom elements.
+
+Polymer is a Google library (suggar sintaxe library)
+to build custom elements on most modern browsers.
+
+PS: To just load custom-elements, we can use the
+webcomponentsjs-lite, a lot smaller
+
+The link tag with "import" is a new draft, not supported on
+**all browsers**, but there is polyfills to the not
+*supported browsers.
+-->
+<link rel="import" href="bower_components/polymer/polymer.html">
+<dom-module id="hello-world">
+  <template>
+    <h2>{{message}}</h2>
+  </template>
+  <script>
+    /*
+    Lets explain, dom-module is a new native tag in all
+    browsers that supports shadow-dom and custom-elements
+    this let you to define the element using native HTML.
+
+    template tag is a also native tag for custom-elements.
+    to know all supported browsers look at: https://www.chromestatus.com/features/4642138092470272
+    template define the skeleton of your element,
+    there is support to binding properties, with {{}},
+    that means you can just set the property in your javascript
+    or using tag attributes, and vuala, the changes are stamped
+    in your HTML code magically (not =P).
+     */
+    Polymer({
+      /*
+        `is` matches dom-module id, so Polymer can know
+        about dom-module
+       */
+      is: 'hello-world',
+      properties: {
+        message: String
+      }
+    });
+  </script>
+</dom-module>

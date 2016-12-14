@@ -1,0 +1,41 @@
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="hello-world.html">
+<dom-module id="hello-world-languages">
+  <template>
+    <hello-world message="{{translatedMessage}}"></hello-world>
+  </template>
+  <script>
+  Polymer({
+    /*
+      `is` matches dom-module id, so Polymer can know
+      about dom-module
+     */
+    is: 'hello-world-languages',
+    properties: {
+      target: String,
+      translatedMessage: String
+    },
+    observers: [
+      // observers are basically: run the functions, when you have the properties defined
+      '_fetchData(target)'
+    ],
+    _fetchData: function() {
+      var secret = 'AIzaSyDE_T3kUTHiqlh3tuf0kst-FD-7vf6tKog';
+
+      var url = 'https://translation.googleapis.com/language/translate/v2?';
+      url += 'key=' + secret;
+      url += '&source=en';
+      url += '&target=' + this.target;
+      url += '&q=Hello%20world';
+
+      var req = new XMLHttpRequest();
+      req.addEventListener('load', function(){
+        var res = JSON.parse(req.response);
+        this.translatedMessage = res.data.translations[0].translatedText;
+      }.bind(this));
+      req.open("GET", url)
+      req.send();
+    }
+  });
+  </script>
+</dom-module>

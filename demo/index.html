@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--
+    Here we use webcomponentsjs-lite, just a tiny library to
+    load essential js to load any web-component (Polymer or not)
+    -->
+    <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
+    <!--
+    with webcomponentsjs we can use HTML import anywhere, so
+    lets import our custom element
+    -->
+    <link rel="import" href="../hello-world.html">
+    <link rel="import" href="../hello-world-languages.html">
+
+    <!-- We can do really beautiful things with data binding -->
+    <script>
+      document.addEventListener('WebComponentsReady', function() {
+        document.getElementById('myHello').message = 'Hello World!';
+      });
+    </script>
+  </head>
+  <body>
+    <!-- Simple as that -->
+    <hello-world id="myHello"></hello-world>
+    <!-- Or that -->
+    <hello-world message="Olá Mundo!"></hello-world>
+    <!-- Or even that -->
+    <hello-world-languages target="de"></hello-world-languages>
+    <hello-world-languages target="es"></hello-world-languages>
+    <hello-world-languages target="ru"></hello-world-languages>
+    <hello-world-languages target="fr"></hello-world-languages>
+  </body>
+</html>
